@@ -18,17 +18,17 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='scipion-em-empiar',
-    version='1.0.0b2',
-    description='A Scipion plugin to make depositions to EMPIAR',
+    name='scipion-em-atom_struct_utils',
+    version='1.0.0b',
+    description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
-    url='https://github.com/scipion-em/scipion-em-empiar',
-    author='I2PC',
+    url='https://github.com/scipion-em/scipion-em-atom_struct_utils',
+    author='Roberto Marabini',
     author_email='scipion@cnb.csic.es',
-    keywords='scipion empiar scipion-1.2',
+    keywords='scipion pdb  scipion-1.2',
     packages=find_packages(),
-    install_requires=['empiar-depositor', 'jsonschema'],
+    install_requires=[],
     package_data={
-       'empiar': ['EMPIAR_logo.png', 'empiar_deposition.schema.json', 'empiar_deposition_template.json'],
+       'atom_struc_utils': ['tool.png'],
     }
 )
