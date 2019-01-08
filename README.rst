@@ -1,6 +1,7 @@
-Scipion Empiar Depositor
-=======================
-This project is a Scipion plugin to make depositions to
-`Empiar <https://www.ebi.ac.uk/pdbe/emdb/empiar/>`_.
+# scipion-em-atom_struct_utils
+Utilities for handling PDB/mmcif atomic structure files
 
-
+TEST: ./scipion test  --grep TestOperate --run
+TUTORIAL: NA
+INSTALLATION: just install the plugin, no further installation needed
+TODO: add to buildbot
