@@ -26,7 +26,7 @@
 from os.path import exists
 from collections import Counter
 
-from atom_struct_utils.protocols import ProtAtomStrucOperate
+from atomstructutils.protocols import ProtAtomStrucOperate
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
 from pyworkflow.em.convert.atom_struct import AtomicStructHandler
