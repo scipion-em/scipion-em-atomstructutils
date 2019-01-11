@@ -24,7 +24,7 @@
 # *
 # **************************************************************************
 from pyworkflow.em.wizard import GetStructureChainsWizard
-from atom_struct_utils.protocols.protocol_operate import \
+from atomstructutils.protocols.protocol_operate import \
     ProtAtomStrucOperate
 
 
