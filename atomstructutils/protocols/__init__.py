@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 # **************************************************************************
 # *
-# * Authors:     Yaiza Rancel (cyrancel@cnb.csic.es)
+# * Authors:    Yunior C. Fonseca Reyna (cfonseca@cnb.csic.es)
 # *
 # * Unidad de  Bioinformatica of Centro Nacional de Biotecnologia , CSIC
 # *
@@ -25,23 +24,4 @@
 # *
 # **************************************************************************
 
-
-_bibtexStr = """
-@article {Iudin2016,
-Title = {EMPIAR: a public archive for raw electron microscopy image data},
-Author = {Iudin, Andrii and Korir, Paul K and Salavert-Torres, José and Kleywegt, Gerard J and Patwardhan, Ardan},
-DOI = {http://dx.doi.org/10.1038/nmeth.3806},
-Number = {5},
-Volume = {13},
-Month = {May},
-Year = {2016},
-Journal = {Nature methods},
-ISSN = {1548-7091},
-Pages = {387—388},
-URL = {https://doi.org/10.1038/nmeth.3806}
-}"""
-
-
-from pyworkflow.utils import parseBibTex
-
-_bibtex = parseBibTex(_bibtexStr)
+from protocol_operate import ProtAtomStrucOperate

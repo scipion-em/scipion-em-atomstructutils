@@ -1,9 +1,9 @@
-
+# coding: latin-1
 # **************************************************************************
 # *
-# * Authors:    Yunior C. Fonseca Reyna (cfonseca@cnb.csic.es)
+# * Authors:     roberto marabini
 # *
-# * Unidad de  Bioinformatica of Centro Nacional de Biotecnologia , CSIC
+# * [1] uam, madrid, Spain
 # *
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -24,13 +24,15 @@
 # *  e-mail address 'scipion@cnb.csic.es'
 # *
 # **************************************************************************
-from pkg_resources import resource_filename
-
-EMPIAR_HOME = 'EMPIAR_HOME'
-
-ASCP_PATH = "ASCP"
-ASPERA_PASS = "ASPERA_SCP_PASS"
-EMPIAR_TOKEN = "EMPIAR_TOKEN"
-
-DEPOSITION_TEMPLATE = resource_filename('empiar', '/'.join(('templates', 'empiar_deposition_template.json')))
-DEPOSITION_SCHEMA = resource_filename('empiar', '/'.join(('templates', 'empiar_deposition.schema.json')))
+_bibtexStr = """
+@Article{Cock2009,
+   Author="Cock, P. J.  and Antao, T.  and Chang, J. T.  and Chapman, B. A.  and Cox, C. J.  and Dalke, A.  and Friedberg, I.  and Hamelryck, T.  and Kauff, F.  and Wilczynski, B.  and de Hoon, M. J. ",
+   Title="{{B}iopython: freely available {P}ython tools for computational molecular biology and bioinformatics}",
+   Journal="Bioinformatics",
+   Year="2009",
+   Volume="25",
+   Number="11",
+   Pages="1422--1423",
+   Month="Jun"
+}
+"""

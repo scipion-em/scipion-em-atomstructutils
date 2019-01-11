@@ -18,11 +18,11 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='scipion-em-atom_struct_utils',
+    name='scipion-em-atomstructutils',
     version='1.0.0b',
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
-    url='https://github.com/scipion-em/scipion-em-atom_struct_utils',
+    url='https://github.com/scipion-em/scipion-em-atomstructutils',
     author='Roberto Marabini',
     author_email='scipion@cnb.csic.es',
     keywords='scipion pdb  scipion-1.2',
