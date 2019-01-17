@@ -89,13 +89,14 @@ class ProtAtomStrucOperate(EMProtocol):
             raise Exception("ERROR: Invalid operation *%s* I quit" % self.Operation)
 
     def addChainStep(self, structFileName, listStructFileName):
-        outFileName = "atomStruct_addChain.cif"
+        outFileName = self._getExtraPath("atomStruct_addChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
         print "Adding to Atomic Struct {}".format(structFileName)
         for fileName in listStructFileName:
             print "AddingStruct {}".format(fileName)
             sys.stdout.flush()
             aStruct1.addStruct(fileName, outFileName)
+        #aStruct1.write(outFileName)
         self.createOutputStep(outFileName, twoRelations=True)
 
     def extractChainStep(self, structFileName):
@@ -112,6 +113,7 @@ class ProtAtomStrucOperate(EMProtocol):
                               end=end,
                               modelID=chainIdDict['model'],
                               filename=outFileName)
+        #aStruct1.write(outFileName)
         self.createOutputStep(outFileName)
 
     def createOutputStep(self, outFileName, twoRelations=False):
