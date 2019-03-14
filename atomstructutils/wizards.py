@@ -23,8 +23,8 @@
 # *  e-mail address 'scipion@cnb.csic.es'
 # *
 # **************************************************************************
-from pyworkflow.em.wizard import GetStructureChainsWizard
-from atom_struct_utils.protocols.protocol_operate import \
+from pyworkflow.em.wizards import GetStructureChainsWizard
+from atomstructutils.protocols.protocol_operate import \
     ProtAtomStrucOperate
 
 
