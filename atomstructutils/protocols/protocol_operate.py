@@ -63,14 +63,16 @@ class ProtAtomStrucOperate(EMProtocol):
                            "structure.")
         form.addParam('start', IntParam,
                       condition="Operation == %d" % self.operationsDictInv['extractChain'],
-                      label="Start at AA #", allowsNull=True,
+                      label="Start at residue #", allowsNull=True,
                       default=-1,
-                      help="Extract Chain starting at this AA. -1 = first aminoacid")
+                      help="Extract Chain starting at this number of residue. "
+                           "-1 = first residue")
         form.addParam('end', IntParam,
                       condition="Operation == %d" % self.operationsDictInv['extractChain'],
-                      label="End at AA #", allowsNull=True,
+                      label="End at residue #", allowsNull=True,
                       default=-1,
-                      help="Extract Chain ending at this AA. -1 -> last aminoacid")
+                      help="Extract Chain ending at this number of residue."
+                           " -1 -> last residue")
 
     # --------------------------- INSERT steps functions --------------------
     def _insertAllSteps(self):
