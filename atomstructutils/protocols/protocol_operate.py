@@ -75,28 +75,34 @@ class ProtAtomStrucOperate(EMProtocol):
     # --------------------------- INSERT steps functions --------------------
     def _insertAllSteps(self):
         if self.Operation == self.operationsDictInv['addChain']:
+            listStructFileName = []
+            for aStruct in self.InputAtomStruct2:
+                listStructFileName.append(aStruct.get().getFileName())
             self._insertFunctionStep('addChainStep',
-                                     self.pdbFileToBeRefined,
-                                     self.InputAtomStruct2
+                                     self.pdbFileToBeRefined.get().getFileName(),
+                                     listStructFileName
                                      )
         elif self.Operation == self.operationsDictInv['extractChain']:
             self._insertFunctionStep('extractChainStep',
-                                     self.pdbFileToBeRefined)
+                                     self.pdbFileToBeRefined.get().getFileName())
         else:
             raise Exception("ERROR: Invalid operation *%s* I quit" % self.Operation)
 
-    def addChainStep(self, struct1, struct2):
-        outFileName = "atomStruct_addChain.cif"
-        aStruct1 = AtomicStructHandler(struct1.get().getFileName())
-        for pdb in struct2:
-            aStruct1.addStruct(pdb.get().getFileName(),
-                           outFileName)
+    def addChainStep(self, structFileName, listStructFileName):
+        outFileName = self._getExtraPath("atomStruct_addChain.cif")
+        aStruct1 = AtomicStructHandler(structFileName)
+        print "Adding to Atomic Struct {}".format(structFileName)
+        for fileName in listStructFileName:
+            print "AddingStruct {}".format(fileName)
+            sys.stdout.flush()
+            aStruct1.addStruct(fileName, outFileName)
+        #aStruct1.write(outFileName)
         self.createOutputStep(outFileName, twoRelations=True)
 
-    def extractChainStep(self, struct):
+    def extractChainStep(self, structFileName):
         import json
         outFileName = self._getExtraPath("atomStruct_extractChain.cif")
-        aStruct1 = AtomicStructHandler(struct.get().getFileName())
+        aStruct1 = AtomicStructHandler(structFileName)
         chainIdDict = json.loads(self.inputStructureChain.get())
         end = self.end.get()
         if end == -1:
@@ -107,6 +113,7 @@ class ProtAtomStrucOperate(EMProtocol):
                               end=end,
                               modelID=chainIdDict['model'],
                               filename=outFileName)
+        #aStruct1.write(outFileName)
         self.createOutputStep(outFileName)
 
     def createOutputStep(self, outFileName, twoRelations=False):

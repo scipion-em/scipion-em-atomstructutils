@@ -26,7 +26,7 @@
 from os.path import exists
 from collections import Counter
 
-from atom_struct_utils.protocols import ProtAtomStrucOperate
+from atomstructutils.protocols import ProtAtomStrucOperate
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
 from pyworkflow.em.convert.atom_struct import AtomicStructHandler
@@ -50,10 +50,10 @@ class TestOperate(TestImportBase):
 
     def testAddChain(self):
         pdb1 = self._importStructurePDB('1P30') # A
-        pdb2 = self._importStructurePDB('1CJD') # A, B, C
-        pdb3 = self._importStructurePDB('355D') # A, B
+        pdb2 = self._importStructurePDB('5NI1') # A, B, C, D
+        pdb3 = self._importStructurePDB('1J77') # A
         _dictOperations = ProtAtomStrucOperate.operationsDictInv
-        args = {'InputAtomStruct1': pdb1,
+        args = {'pdbFileToBeRefined': pdb1,
                 'InputAtomStruct2': [pdb2, pdb3],
                 'Operation': _dictOperations['addChain']
                 }
@@ -68,22 +68,26 @@ class TestOperate(TestImportBase):
                         "Filename {} does not exists".format(outPutPDB))
 
         # chains are OK
+
         aSH = AtomicStructHandler(outPutPDB)
         chains = [chain.id for chain in aSH.getStructure().get_chains()]
-        goal = ['A', 'A002', 'B', 'C']
+        goal = ['A', 'A002', 'B', 'C', 'D', 'A003']
         self.assertTrue(Counter(chains) == Counter(goal),
                         "{} != {}".format(chains, goal))
 
         # atoms are OK
         aSH1 = AtomicStructHandler(pdb1.getFileName())
         aSH2 = AtomicStructHandler(pdb2.getFileName())
+        aSH3 = AtomicStructHandler(pdb3.getFileName())
         #
         atomsNum1 = len([atom.id for atom in aSH1.getStructure().get_atoms()])
         atomsNum2 = len([atom.id for atom in aSH2.getStructure().get_atoms()])
+        atomsNum3 = len([atom.id for atom in aSH3.getStructure().get_atoms()])
         atomsNumT = len([atom.id for atom in aSH.getStructure().get_atoms()])
-        self.assertEqual(atomsNum1 + atomsNum2, atomsNumT)
+        self.assertEqual(atomsNum1 + atomsNum2 + atomsNum3, atomsNumT)
 
-    def testAddChain(self):
+
+    def testExtractChain(self):
         pdb1 = self._importStructurePDB('1P30') # A, B, C
         _dictOperations = ProtAtomStrucOperate.operationsDictInv
         args = {'pdbFileToBeRefined': pdb1,
