@@ -34,4 +34,5 @@ To check the installation, simply run the following Scipion test: `scipion test 
 
 
 ## BuildBot Status
-![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg "Build status")
+Status devel version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg "Build status")
+Status production version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_prod.svg "Build status")
