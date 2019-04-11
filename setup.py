@@ -23,7 +23,7 @@ setup(
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
-    author='Roberto Marabini',
+    author='Roberto Marabini and Marta Martinez',
     author_email='scipion@cnb.csic.es',
     keywords='scipion pdb  scipion-1.2',
     packages=find_packages(),
