@@ -13,3 +13,5 @@ TUTORIAL: NA
 INSTALLATION: just install the plugin, no further installation needed
 
 TODO: add to buildbot
+![build status](http://arquimedes.cnb.csic.es:9980/badges/motioncorr_devel.svg "Build status")
+
