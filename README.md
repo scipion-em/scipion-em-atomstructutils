@@ -2,10 +2,12 @@
 
 Utilities for handling PDB/mmcif atomic structure files:
 
-So far contains two utilities:
+So far it contains two utilities:
 
 * extract a chain from an atom struct (pdb/cif file) 
 * perform union of two atomic structs
+
+implemented in a single protocol called `operate`
 
 ## Installation
 
@@ -35,4 +37,5 @@ To check the installation, simply run the following Scipion test: `scipion test 
 
 ## BuildBot Status
 Status devel version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg "Build status")
+
 Status production version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_prod.svg "Build status")
