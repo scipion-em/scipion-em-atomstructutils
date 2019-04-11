@@ -34,4 +34,4 @@ To check the installation, simply run the following Scipion test: `scipion test 
 
 
 ## BuildBot Status
-![build status](http://arquimedes.cnb.csic.es:9980/badges/motioncorr_devel.svg "Build status")
+![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg "Build status")
