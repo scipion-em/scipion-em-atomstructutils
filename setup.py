@@ -19,7 +19,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='scipion-em-atomstructutils',
-    version='1.0.4b',
+    version='1.0.5b',
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
