@@ -1,4 +1,6 @@
-# Atom_struct_utils plugin
+================================
+Atom_struct_utils scipion plugin
+================================
 
 Utilities for handling PDB/mmcif atomic structure files:
 
@@ -9,23 +11,32 @@ So far it contains two utilities:
 
 implemented in a single protocol called `operate`
 
-## Installation
+===================
+Install this plugin
+===================
 
 You will need to use [2.0](https://github.com/I2PC/scipion/releases/tag/v2.0) version of Scipion to be able to run these protocols. To install the plugin, you have two options:
 
-   a) Stable version
-   ```
+1) Stable version
+   
+.. code-block:: 
+
    scipion installp -p scipion-em-atom_struct_utils
-   ```
-   b) Developer's version
-   * download repository 
-   ```
-    git clone https://github.com/scipion-em/scipion-em-atom_struct_utils.git
-   ```
-   * install 
-   ```
-    scipion installp -p path_to_scipion-em-atom_struct_utils --devel
-   ```
+
+2) Developer's version
+   
+      a) download repository 
+      
+.. code-block::
+
+      git clone https://github.com/scipion-em/scipion-em-atom_struct_utils.git
+
+      b) install
+      
+.. code-block::
+
+      scipion installp -p path_to_scipion-em-atom_struct_utils --devel
+
 
 Atom_struct_utils plugin is a pure Python module, no binary files are required. 
 
