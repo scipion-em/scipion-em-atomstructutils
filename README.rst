@@ -11,6 +11,7 @@ So far it contains two utilities:
 
 implemented in a single protocol called `operate`
 
+
 ===================
 Install this plugin
 ===================
@@ -44,13 +45,22 @@ OR
 
 Atom_struct_utils plugin is a pure Python module, no binary files are required. 
 
+- **TESTS**
+
 To check the installation, simply run the following Scipion test: `scipion test  --grep TestOperate --run`
 
-- **Examples**
+
+========
+Examples
+========
 
 See `Model Building Tutorial <https://github.com/I2PC/scipion/wiki/tutorials/tutorial_model_building_basic.pdf>`_
 
-- **BuildBot Status**
+
+
+===============
+Buildbot status
+===============
 
 Status devel version: 
 
