@@ -4,10 +4,10 @@ Atom_struct_utils scipion plugin
 
 Utilities for handling PDB/mmcif atomic structure files:
 
-So far it contains two utilities:
+Current plugin utilities:
 
-* extract a chain from an atom struct (pdb/cif file) 
-* perform union of two atomic structs
+* extract a chain from an atom structure (pdb/cif file) 
+* perform union of several atomic structures
 
 implemented in a single protocol called `operate`
 
@@ -16,7 +16,7 @@ implemented in a single protocol called `operate`
 Install this plugin
 ===================
 
-You will need to use `2.0.0 <https://github.com/I2PC/scipion/releases/tag/v2.0>`_ version of Scipion to be able to run these protocols. To install the plugin, you have two options:
+You will need to use `2.0.0 <https://github.com/I2PC/scipion/releases/tag/v2.0>`_ version of Scipion to run these protocols. To install the plugin, you have two options:
 
 - **Stable version**  
 
@@ -42,10 +42,11 @@ OR
 
             scipion installp -p path_to_scipion-em-atom_struct_utils --devel
 
+- **Binary files** 
 
 Atom_struct_utils plugin is a pure Python module, no binary files are required. 
 
-- **TESTS**
+- **Tests**
 
 To check the installation, simply run the following Scipion test: `scipion test  --grep TestOperate --run`
 
