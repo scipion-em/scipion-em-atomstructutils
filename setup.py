@@ -19,13 +19,13 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='scipion-em-atomstructutils',
-    version='1.0.3b',
+    version='1.0.4b',
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
     author='Roberto Marabini and Marta Martinez',
     author_email='scipion@cnb.csic.es',
-    keywords='scipion pdb  scipion-1.2',
+    keywords='scipion pdb  scipion-2',
     packages=find_packages(),
     install_requires=[],
     package_data={
