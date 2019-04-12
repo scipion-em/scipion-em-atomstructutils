@@ -15,38 +15,47 @@ implemented in a single protocol called `operate`
 Install this plugin
 ===================
 
-You will need to use [2.0](https://github.com/I2PC/scipion/releases/tag/v2.0) version of Scipion to be able to run these protocols. To install the plugin, you have two options:
+You will need to use `2.0.0 <https://github.com/I2PC/scipion/releases/tag/v2.0>`_ version of Scipion to be able to run these protocols. To install the plugin, you have two options:
 
-1) Stable version
-   
+- **Stable version**  
+
 .. code-block:: 
 
-   scipion installp -p scipion-em-atom_struct_utils
-
-2) Developer's version
-   
-      a) download repository 
+      scipion installp -p scipion-em-atom_struct_utils
       
+OR
+
+  - through the plugin manager GUI by launching Scipion and following **Configuration** >> **Plugins**
+      
+- **Developer's version** 
+
+1. Download repository: 
+
 .. code-block::
 
-      git clone https://github.com/scipion-em/scipion-em-atom_struct_utils.git
+            git clone https://github.com/scipion-em/scipion-em-atom_struct_utils.git
 
-      b) install
-      
+2. Install:
+
 .. code-block::
 
-      scipion installp -p path_to_scipion-em-atom_struct_utils --devel
+            scipion installp -p path_to_scipion-em-atom_struct_utils --devel
 
 
 Atom_struct_utils plugin is a pure Python module, no binary files are required. 
 
 To check the installation, simply run the following Scipion test: `scipion test  --grep TestOperate --run`
 
-## Examples
-[See Model Building Tutorial](https://github.com/I2PC/scipion/wiki/tutorials/tutorial_model_building_basic.pdf)
+- **Examples**
 
+See `Model Building Tutorial <https://github.com/I2PC/scipion/wiki/tutorials/tutorial_model_building_basic.pdf>`_
 
-## BuildBot Status
-Status devel version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg "Build status")
+- **BuildBot Status**
 
-Status production version: ![build status](http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_prod.svg "Build status")
+Status devel version: 
+
+.. image:: http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_devel.svg
+
+Status production version: 
+
+.. image:: http://arquimedes.cnb.csic.es:9980/badges/atomstructutils_prod.svg
