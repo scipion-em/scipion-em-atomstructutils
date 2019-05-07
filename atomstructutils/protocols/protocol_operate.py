@@ -36,7 +36,7 @@ from pyworkflow.protocol.params import (EnumParam,
                                         LEVEL_ADVANCED)
 
 class ProtAtomStrucOperate(EMProtocol):
-  """Utilities for handling PDB/mmcif atomic structure files.
+    """Utilities for handling PDB/mmcif atomic structure files.
 Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif file),
 (B) perform union of several atomic structures"""
     operationsDict = {0: 'addChain', 1: 'extractChain'}
