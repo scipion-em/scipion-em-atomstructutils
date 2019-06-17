@@ -48,8 +48,9 @@ Atom_struct_utils plugin is a pure Python module, no binary files are required.
 
 - **Tests**
 
-To check the installation, simply run the following Scipion test: `scipion test  --grep TestOperate --run`
-
+To check the installation, simply run the following Scipion test:
+    * `scipion test --grep TestOperate --run`
+    * `scipion test --grep TestConvertSymmetry --run`
 
 ========
 Examples
