@@ -40,6 +40,8 @@ from pyworkflow.protocol.params import (EnumParam,
 from pyworkflow.em.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
                                      SCIPION_SYM_NAME)
+import numpy as np
+
 LOCAL_SYM_NAME = {}
 LOCAL_SYM_NAME[SYM_I222] = 'I1'
 LOCAL_SYM_NAME[SYM_I222r] = 'I2'
@@ -117,30 +119,34 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
 
     def applyTransformationStep(self, origSym, targetSym):
         matrix = self.getTransformationMatrix(origSym, targetSym)
-        print "transformation matrix", matrix
-        originAtomStructFn = self.pdbFileToBeRefined.get()
+
+        originAtomStructFn = self.pdbFileToBeRefined.get().getFileName()
         targetAtomStructFn = self._getExtraPath("outPutAtomStruct.cif")
         self.rotateAtomStruct(inAtomStructFn=originAtomStructFn,
                               outAtomStructFn=targetAtomStructFn,
                               matrix=matrix)
-        #self.createOutputStep(originAtomStruct, targetAtomStruct)
+        self.createOutputStep(targetSym, targetAtomStructFn)
 
     def getTransformationMatrix(self, origin, target):
         "compute matrix that converts between two icosahedal simmetries"
         ico = Icosahedron(orientation = SCIPION_SYM_NAME[origin][1:])
         matrix = ico.coordinateSystemTransform(SCIPION_SYM_NAME[origin][1:],
                                                SCIPION_SYM_NAME[target][1:])
-        return matrix
+        return np.array(matrix)
 
     def rotateAtomStruct(self, inAtomStructFn, outAtomStructFn, matrix):
         "apply rotation matrix to input atomic structure"
         atSH = AtomicStructHandler(inAtomStructFn)
         atSH.transform(matrix)
-        atSH.write("/tmp/kk.cif")
+        atSH.write(outAtomStructFn)
 
-    def createOutputStep(self):
+    def createOutputStep(self, targetSym, targetAtomStructFn):
         """ save new atomic structure"""
-        pass
+        pdb = AtomStruct()
+        pdb.setFileName(targetAtomStructFn)
+        self._defineOutputs(rotatedAtomStruct=pdb)
+        self._defineSourceRelation(self.pdbFileToBeRefined, pdb)
+
     # --------------------------- UTILS functions ------------------
 
     def _validate(self):
