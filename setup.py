@@ -19,7 +19,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='scipion-em-atomstructutils',
-    version='1.0.6b',
+    version='1.0.7',
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
@@ -28,6 +28,7 @@ setup(
     keywords='scipion pdb  scipion-2',
     packages=find_packages(),
     install_requires=[],
+    include_package_data=True,
     package_data={
        'atom_struc_utils': ['tool.png'],
     }
