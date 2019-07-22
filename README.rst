@@ -6,9 +6,9 @@ Utilities for handling PDB/mmcif atomic structure files:
 
 Current plugin protocols:
 
-* operate (option extract): extract a chain from an atom structure (pdb/cif file) 
-* operate (option add): perform union of several atomic structures
-* convert_sym: takes an atomStruct in any icosahedric symemtry and rotates it to another
+* operate (option extract): extract a chain from an atom structure (pdb/cif file).
+* operate (option add): perform union of several atomic structures.
+* convert_sym: takes an atomStruct in any icosahedric symemtry and rotates it to another.
 
 ===================
 Install this plugin
