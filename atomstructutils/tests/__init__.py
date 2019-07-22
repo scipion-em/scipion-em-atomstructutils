@@ -25,3 +25,4 @@
 # **************************************************************************
 
 from test_protocol_operate import (TestOperate)
+from test_protocol_convertsymmetry import TestConvertSymmetry
