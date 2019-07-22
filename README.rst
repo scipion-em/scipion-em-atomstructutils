@@ -4,13 +4,11 @@ Atom_struct_utils scipion plugin
 
 Utilities for handling PDB/mmcif atomic structure files:
 
-Current plugin utilities:
+Current plugin protocols:
 
-* extract a chain from an atom structure (pdb/cif file) 
-* perform union of several atomic structures
-
-implemented in a single protocol called `operate`
-
+* operate (option extract): extract a chain from an atom structure (pdb/cif file) 
+* operate (option add): perform union of several atomic structures
+* convert_sym: takes an atomStruct in any icosahedric symemtry and rotates it to another
 
 ===================
 Install this plugin
