@@ -24,9 +24,10 @@
 # *  e-mail address 'scipion@cnb.csic.es'
 # *
 # **************************************************************************
-import sys
 from pyworkflow.em.protocol import EMProtocol
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+
+from atomstructutils.protocols import AtomicStructHandler
+
 from pyworkflow.em import AtomStruct
 from pyworkflow.em.convert.symmetry import  Icosahedron
 from pyworkflow.protocol.params import (EnumParam,

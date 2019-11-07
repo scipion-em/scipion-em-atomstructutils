@@ -26,3 +26,11 @@
 
 from protocol_operate import ProtAtomStrucOperate
 from protocol_convertsymmetry import ProtAtomStrucConvertSymmetry
+# Horrible hack to release this plugin before scipion next version.
+# TODO: remove when possible
+from pyworkflow import LAST_VERSION, VERSION_2_0
+if LAST_VERSION == VERSION_2_0 :
+    from pyworkflow.utils import importFromPlugin
+    AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+else:
+    from pyworkflow.em.convert.atom_struct import AtomicStructHandler

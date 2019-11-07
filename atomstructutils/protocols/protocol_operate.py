@@ -26,14 +26,13 @@
 # **************************************************************************
 import sys
 from pyworkflow.em.protocol import EMProtocol
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+from atomstructutils.protocols import AtomicStructHandler
 from pyworkflow.em import AtomStruct
 from pyworkflow.protocol.params import (EnumParam,
                                         IntParam,
                                         MultiPointerParam,
                                         PointerParam,
-                                        StringParam,
-                                        LEVEL_ADVANCED)
+                                        StringParam)
 
 class ProtAtomStrucOperate(EMProtocol):
     """Utilities for handling PDB/mmcif atomic structure files.
