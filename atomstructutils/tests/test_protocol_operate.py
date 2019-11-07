@@ -29,7 +29,7 @@ from collections import Counter
 from atomstructutils.protocols import ProtAtomStrucOperate
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+from atomstructutils import AtomicStructHandler
 
 class TestImportBase(BaseTest):
     @classmethod
