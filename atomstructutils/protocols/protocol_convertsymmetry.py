@@ -26,7 +26,7 @@
 # **************************************************************************
 from pyworkflow.em.protocol import EMProtocol
 
-from atomstructutils.protocols import AtomicStructHandler
+from atomstructutils import AtomicStructHandler
 
 from pyworkflow.em import AtomStruct
 from pyworkflow.em.convert.symmetry import  Icosahedron
