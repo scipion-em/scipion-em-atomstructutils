@@ -25,7 +25,7 @@
 from atomstructutils.protocols import ProtAtomStrucConvertSymmetry
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+from atomstructutils import AtomicStructHandler
 from pyworkflow.em.convert.symmetry import Icosahedron
 from pyworkflow.em.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
