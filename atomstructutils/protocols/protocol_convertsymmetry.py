@@ -26,8 +26,6 @@
 # **************************************************************************
 from pyworkflow.em.protocol import EMProtocol
 
-from atomstructutils import AtomicStructHandler
-
 from pyworkflow.em import AtomStruct
 from pyworkflow.em.convert.symmetry import  Icosahedron
 from pyworkflow.protocol.params import (EnumParam,
@@ -137,6 +135,15 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
 
     def rotateAtomStruct(self, inAtomStructFn, outAtomStructFn, matrix):
         "apply rotation matrix to input atomic structure"
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+
         atSH = AtomicStructHandler(inAtomStructFn)
         atSH.transform(matrix)
         atSH.write(outAtomStructFn)
