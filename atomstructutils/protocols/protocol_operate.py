@@ -26,7 +26,6 @@
 # **************************************************************************
 import sys
 from pyworkflow.em.protocol import EMProtocol
-from atomstructutils import AtomicStructHandler
 from pyworkflow.em import AtomStruct
 from pyworkflow.protocol.params import (EnumParam,
                                         IntParam,
@@ -93,6 +92,15 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
             raise Exception("ERROR: Invalid operation *%s* I quit" % self.Operation)
 
     def addChainStep(self, structFileName, listStructFileName):
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+
         outFileName = self._getExtraPath("atomStruct_addChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
         print "Adding to Atomic Struct {}".format(structFileName)
@@ -104,6 +112,15 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         self.createOutputStep(outFileName, twoRelations=True)
 
     def extractChainStep(self, structFileName):
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+
         import json
         outFileName = self._getExtraPath("atomStruct_extractChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
