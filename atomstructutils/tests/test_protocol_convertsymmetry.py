@@ -25,7 +25,6 @@
 from atomstructutils.protocols import ProtAtomStrucConvertSymmetry
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
 from pyworkflow.em.convert.symmetry import Icosahedron
 from pyworkflow.em.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
@@ -100,6 +99,14 @@ class TestConvertSymmetry(TestImportBase):
         protAtomStrucOperate = self.newProtocol(ProtAtomStrucConvertSymmetry, **args)
         protAtomStrucOperate.setObjLabel('rotate atom structs, to %s'%SCIPION_SYM_NAME[sym])
         self.launchProtocol(protAtomStrucOperate)
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
 
         aSH = AtomicStructHandler(protAtomStrucOperate.rotatedAtomStruct.getFileName())
         atoms_coord = [atom.coord for atom in aSH.getStructure().get_atoms()]

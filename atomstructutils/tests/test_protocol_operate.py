@@ -29,7 +29,6 @@ from collections import Counter
 from atomstructutils.protocols import ProtAtomStrucOperate
 from pyworkflow.tests import BaseTest, setupTestProject
 from pyworkflow.em.protocol.protocol_import import ProtImportPdb
-from pyworkflow.em.convert.atom_struct import AtomicStructHandler
 
 class TestImportBase(BaseTest):
     @classmethod
@@ -68,6 +67,14 @@ class TestOperate(TestImportBase):
                         "Filename {} does not exists".format(outPutPDB))
 
         # chains are OK
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
 
         aSH = AtomicStructHandler(outPutPDB)
         chains = [chain.id for chain in aSH.getStructure().get_chains()]
@@ -88,6 +95,14 @@ class TestOperate(TestImportBase):
 
 
     def testExtractChain(self):
+        # Horrible hack to release this plugin before scipion next version.
+        # TODO: remove when possible
+        from pyworkflow import LAST_VERSION, VERSION_2_0
+        if LAST_VERSION == VERSION_2_0:
+            from pyworkflow.utils import importFromPlugin
+            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
+        else:
+            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
         pdb1 = self._importStructurePDB('1P30') # A, B, C
         _dictOperations = ProtAtomStrucOperate.operationsDictInv
         args = {'pdbFileToBeRefined': pdb1,
