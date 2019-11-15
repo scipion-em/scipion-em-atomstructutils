@@ -22,7 +22,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='scipion-em-atomstructutils',
-    version='2.0.0',
+    version='2.0.1',
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
