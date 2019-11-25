@@ -30,18 +30,18 @@ This package contains the protocols for
 manipulation of atomic struct objects
 """
 
-import pyworkflow.em
-from bibtex import _bibtexStr
+import pwem
+from .bibtex import _bibtexStr
 
 
 _references = ['Cock2009']
 _logo = 'tool.png'
 
 
-class Plugin(pyworkflow.em.Plugin):
+class Plugin(pwem.Plugin):
     pass
 
-pyworkflow.em.Domain.registerPlugin(__name__)
+pwem.Domain.registerPlugin(__name__)
 
 
 
