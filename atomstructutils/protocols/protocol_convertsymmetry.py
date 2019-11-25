@@ -24,10 +24,10 @@
 # *  e-mail address 'scipion@cnb.csic.es'
 # *
 # **************************************************************************
-from pyworkflow.em.protocol import EMProtocol
+from pwem.protocols import EMProtocol
 
-from pyworkflow.em import AtomStruct
-from pyworkflow.em.convert.symmetry import  Icosahedron
+from pwem import AtomStruct
+from pwem.convert.symmetry import  Icosahedron
 from pyworkflow.protocol.params import (EnumParam,
                                         IntParam,
                                         MultiPointerParam,
@@ -36,7 +36,7 @@ from pyworkflow.protocol.params import (EnumParam,
                                         LEVEL_ADVANCED)
 
 
-from pyworkflow.em.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
+from pwem.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
                                      SCIPION_SYM_NAME)
 import numpy as np
@@ -142,7 +142,7 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
             from pyworkflow.utils import importFromPlugin
             AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
         else:
-            from pyworkflow.em.convert.atom_struct import AtomicStructHandler
+            from pwem.convert.atom_struct import AtomicStructHandler
 
         atSH = AtomicStructHandler(inAtomStructFn)
         atSH.transform(matrix)
