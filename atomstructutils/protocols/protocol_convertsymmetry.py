@@ -26,7 +26,7 @@
 # **************************************************************************
 from pwem.protocols import EMProtocol
 
-from pwem import AtomStruct
+from pwem.objects import AtomStruct
 from pwem.convert.symmetry import  Icosahedron
 from pyworkflow.protocol.params import (EnumParam,
                                         IntParam,
@@ -40,6 +40,7 @@ from pwem.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
                                      SCIPION_SYM_NAME)
 import numpy as np
+from pwem.convert.atom_struct import AtomicStructHandler, fromCIFTommCIF
 
 LOCAL_SYM_NAME = {}
 LOCAL_SYM_NAME[SYM_I222] = 'I1'
@@ -82,7 +83,8 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
                                 ],
                        default=SYM_I222r - SYM_I222,
                        label="Symmetry",
-                       help="See https://github.com/I2PC/xmipp-portal/wiki/Symmetry"
+                       help="Select the current symmetry of your atomic structure./n"
+                            "See https://github.com/I2PC/xmipp-portal/wiki/Symmetry"
                             "Symmetry for a description of the symmetry groups "
                        )
 
@@ -106,7 +108,8 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
                            ],
                   default=SYM_I222 - SYM_I222,
                   label="Symmetry",
-                  help="See https://github.com/I2PC/xmipp-portal/wiki/Symmetry"
+                  help="Select the desired symmetry of your atomic structure.\n"
+                       "See https://github.com/I2PC/xmipp-portal/wiki/Symmetry"
                        "Symmetry for a description of the symmetry groups "
                   )
 
@@ -135,14 +138,6 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
 
     def rotateAtomStruct(self, inAtomStructFn, outAtomStructFn, matrix):
         "apply rotation matrix to input atomic structure"
-        # Horrible hack to release this plugin before scipion next version.
-        # TODO: remove when possible
-        from pyworkflow import LAST_VERSION, VERSION_2_0
-        if LAST_VERSION == VERSION_2_0:
-            from pyworkflow.utils import importFromPlugin
-            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
-        else:
-            from pwem.convert.atom_struct import AtomicStructHandler
 
         atSH = AtomicStructHandler(inAtomStructFn)
         atSH.transform(matrix)
@@ -152,6 +147,10 @@ class ProtAtomStrucConvertSymmetry(EMProtocol):
         """ save new atomic structure"""
         pdb = AtomStruct()
         pdb.setFileName(targetAtomStructFn)
+        # MM: to get appropriate cif files to be visualize with Chimera
+        # Transform the output cif file in mmcif
+        log = self._log
+        fromCIFTommCIF(pdb.getFileName(), pdb.getFileName(), log)
         self._defineOutputs(rotatedAtomStruct=pdb)
         self._defineSourceRelation(self.pdbFileToBeRefined, pdb)
 
