@@ -29,6 +29,7 @@ from pwem.convert.symmetry import Icosahedron
 from pwem.constants import (SYM_I222, SYM_I222r, SYM_In25, SYM_In25r,
                                      SYM_I2n3, SYM_I2n3r, SYM_I2n5, SYM_I2n5r,
                                      SCIPION_SYM_NAME)
+from pwem.convert.atom_struct import AtomicStructHandler
 
 class TestImportBase(BaseTest):
     @classmethod
@@ -61,7 +62,7 @@ class TestConvertSymmetry(TestImportBase):
         model.add(chain)
         for i, v in enumerate(pentomVectorI222r, 1):
             res_id = (' ', i, ' ')  # first arg ' ' -> aTOm else heteroatom
-            res_name = "ALA" + str(i)  # define name of residue
+            res_name = "ALA" #+ str(i)  # define name of residue
             res_segid = '    '
             residue = Residue(res_id, res_name, res_segid)
             chain.add(residue)
@@ -99,14 +100,6 @@ class TestConvertSymmetry(TestImportBase):
         protAtomStrucOperate = self.newProtocol(ProtAtomStrucConvertSymmetry, **args)
         protAtomStrucOperate.setObjLabel('rotate atom structs, to %s'%SCIPION_SYM_NAME[sym])
         self.launchProtocol(protAtomStrucOperate)
-        # Horrible hack to release this plugin before scipion next version.
-        # TODO: remove when possible
-        from pyworkflow import LAST_VERSION, VERSION_2_0
-        if LAST_VERSION == VERSION_2_0:
-            from pyworkflow.utils import importFromPlugin
-            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
-        else:
-            from pwem.convert.atom_struct import AtomicStructHandler
 
         aSH = AtomicStructHandler(protAtomStrucOperate.rotatedAtomStruct.getFileName())
         atoms_coord = [atom.coord for atom in aSH.getStructure().get_atoms()]
