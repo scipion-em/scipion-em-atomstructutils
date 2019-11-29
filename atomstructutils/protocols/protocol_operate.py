@@ -32,6 +32,9 @@ from pyworkflow.protocol.params import (EnumParam,
                                         MultiPointerParam,
                                         PointerParam,
                                         StringParam)
+from pwem.convert.atom_struct import AtomicStructHandler, fromCIFTommCIF
+import os
+
 
 class ProtAtomStrucOperate(EMProtocol):
     """Utilities for handling PDB/mmcif atomic structure files.
@@ -93,14 +96,6 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
             raise Exception("ERROR: Invalid operation *%s* I quit" % self.Operation)
 
     def addChainStep(self, structFileName, listStructFileName):
-        # Horrible hack to release this plugin before scipion next version.
-        # TODO: remove when possible
-        from pyworkflow import LAST_VERSION, VERSION_2_0
-        if LAST_VERSION == VERSION_2_0:
-            from pyworkflow.utils import importFromPlugin
-            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
-        else:
-            from pwem.convert.atom_struct import AtomicStructHandler
 
         outFileName = self._getExtraPath("atomStruct_addChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
@@ -113,14 +108,6 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         self.createOutputStep(outFileName, twoRelations=True)
 
     def extractChainStep(self, structFileName):
-        # Horrible hack to release this plugin before scipion next version.
-        # TODO: remove when possible
-        from pyworkflow import LAST_VERSION, VERSION_2_0
-        if LAST_VERSION == VERSION_2_0:
-            from pyworkflow.utils import importFromPlugin
-            AtomicStructHandler = importFromPlugin('chimera.atom_struct', 'AtomicStructHandler')
-        else:
-            from pwem.convert.atom_struct import AtomicStructHandler
 
         import json
         outFileName = self._getExtraPath("atomStruct_extractChain.cif")
@@ -139,8 +126,14 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         self.createOutputStep(outFileName)
 
     def createOutputStep(self, outFileName, twoRelations=False):
+        outFileName = os.path.abspath(outFileName)
         pdb = AtomStruct()
         pdb.setFileName(outFileName)
+        # MM: to get appropriate cif files to be visualize with Chimera
+        # Transform the output cif file in mmcif
+        log = self._log
+        fromCIFTommCIF(outFileName, outFileName, log)
+
         self._defineOutputs(outputPdb=pdb)
         self._defineSourceRelation(self.pdbFileToBeRefined, pdb)
         if twoRelations:
