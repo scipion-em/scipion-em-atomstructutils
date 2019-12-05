@@ -32,6 +32,7 @@ manipulation of atomic struct objects
 
 import pwem
 from .bibtex import _bibtexStr
+from pwem.constants import MAXIT
 
 
 _references = ['Cock2009']
@@ -39,7 +40,11 @@ _logo = 'tool.png'
 
 
 class Plugin(pwem.Plugin):
-    pass
+
+    @classmethod
+    def defineBinaries(cls, env):
+        pwem.Plugin.defineBinaries(env)
+        env.getTarget(MAXIT).setDefault(True)
 
 pwem.Domain.registerPlugin(__name__)
 
