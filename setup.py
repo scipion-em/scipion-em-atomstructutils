@@ -28,11 +28,14 @@ setup(
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
     author='Roberto Marabini and Marta Martinez',
     author_email='scipion@cnb.csic.es',
-    keywords='scipion pdb  scipion-2',
+    keywords='scipion pdb  scipion-3',
     packages=find_packages(),
     install_requires=[requirements],
     include_package_data=True,
     package_data={
        'atom_struc_utils': ['tool.png'],
+    },
+    entry_points={
+        'pyworkflow.plugin': 'atomstructutils = atomstructutils'
     }
 )

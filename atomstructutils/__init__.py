@@ -46,7 +46,6 @@ class Plugin(pwem.Plugin):
         pwem.Plugin.defineBinaries(env)
         env.getTarget(MAXIT).setDefault(True)
 
-pwem.Domain.registerPlugin(__name__)
 
 
 
