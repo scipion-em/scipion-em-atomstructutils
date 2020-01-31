@@ -27,7 +27,7 @@
 
 import os
 
-from pwem.convert import ImageHandler
+from pwem.emlib.image import ImageHandler
 from atomstructutils.protocols.protocol_convertsymmetry import \
     ProtAtomStrucConvertSymmetry
 from pwem.viewers import Chimera
