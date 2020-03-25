@@ -36,17 +36,24 @@ OR
 
 2. Install:
 
-   Prerequisites: install bison, flex and csh
+**READ** Binary file section before installing this package
 
 .. code-block::
-            sudo apt install bison  (command valid for ubuntu/debian and similar OS)
-            sudo apt install felx   (command valid for ubuntu/debian and similar OS) 
-            sudo apt install csh   (command valid for ubuntu/debian and similar OS) 
+
             scipion installp -p path_to_scipion-em-atom_struct_utils --devel
 
 - **Binary files** 
 
-Atom_struct_utils plugin is a pure Python module, no binary files are required. 
+Atom_struct_utils plugin is a pure Python module but uses the program "maxit"
+for conversion of pdb/cif files with atomic coordinates. If not available maxit will be
+instaled. Prerequisites for maxit are  install bison, flex and csh
+
+.. code-block::
+
+sudo apt install bison  (command valid for ubuntu/debian and similar OS)
+sudo apt install felx   (command valid for ubuntu/debian and similar OS) 
+sudo apt install csh   (command valid for ubuntu/debian and similar OS) 
+
 
 - **Tests**
 
