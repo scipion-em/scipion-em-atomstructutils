@@ -36,8 +36,12 @@ OR
 
 2. Install:
 
-.. code-block::
+   Prerequisites: install bison, flex and csh
 
+.. code-block::
+            sudo apt install bison  (command valid for ubuntu/debian and similar OS)
+            sudo apt install felx   (command valid for ubuntu/debian and similar OS) 
+            sudo apt install csh   (command valid for ubuntu/debian and similar OS) 
             scipion installp -p path_to_scipion-em-atom_struct_utils --devel
 
 - **Binary files** 
