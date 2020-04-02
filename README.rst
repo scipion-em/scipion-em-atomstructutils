@@ -48,7 +48,7 @@ OR
 
 Atom_struct_utils plugin is a pure Python module but uses the program "maxit"
 for conversion of pdb/cif files with atomic coordinates. If not available maxit will be
-instaled. Prerequisites for maxit are  **bison**, **flex** and **csh**
+instaled. Prerequisites for maxit are  **bison**, **flex**, **csh** and **tcsh**
 
 .. code-block::
 
