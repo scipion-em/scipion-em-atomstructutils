@@ -24,5 +24,5 @@
 # *
 # **************************************************************************
 
-from protocol_operate import ProtAtomStrucOperate
-from protocol_convertsymmetry import ProtAtomStrucConvertSymmetry
+from .protocol_operate import ProtAtomStrucOperate
+from .protocol_convertsymmetry import ProtAtomStrucConvertSymmetry

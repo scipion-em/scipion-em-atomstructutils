@@ -30,18 +30,22 @@ This package contains the protocols for
 manipulation of atomic struct objects
 """
 
-import pyworkflow.em
-from bibtex import _bibtexStr
+import pwem
+from .bibtex import _bibtexStr
+from pwem.constants import MAXIT
 
-
+__version__ = "3.0.2"
 _references = ['Cock2009']
 _logo = 'tool.png'
 
 
-class Plugin(pyworkflow.em.Plugin):
-    pass
+class Plugin(pwem.Plugin):
 
-pyworkflow.em.Domain.registerPlugin(__name__)
+    @classmethod
+    def defineBinaries(cls, env):
+        pwem.Plugin.defineBinaries(env)
+        env.getTarget(MAXIT).setDefault(True)
+
 
 
 
