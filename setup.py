@@ -10,6 +10,7 @@ from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
+from atomstructutils import __version__
 
 here = path.abspath(path.dirname(__file__))
 
@@ -22,7 +23,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='scipion-em-atomstructutils',
-    version='3.0.1',
+    version=__version__,
     description='A Scipion plugin to manipulate atomic structure files (PDB/MMCIF)',
     long_description=long_description,
     url='https://github.com/scipion-em/scipion-em-atomstructutils',
