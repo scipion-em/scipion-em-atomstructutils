@@ -104,3 +104,61 @@ class TestOperate(TestImportBase):
         aSH2.read(outFileName)
         atomsNumT = len([atom.id for atom in aSH2.getStructure().get_atoms()])
         self.assertEqual(122, atomsNumT)
+
+    def testRenumberChain(self):
+        pdb1 = self._importStructurePDB('1P30') # A
+        _dictOperations = ProtAtomStrucOperate.operationsDictInv
+        args = {'pdbFileToBeRefined': pdb1,
+                'Operation': _dictOperations['reNumberChain'],
+                'inputStructureChain': '{"model": 0, "chain": "A", "residues": 891}',
+                'offset': 5
+                }
+
+        protAtomStrucExtractChain = self.newProtocol(ProtAtomStrucOperate, **args)
+        self.launchProtocol(protAtomStrucExtractChain)
+        aSH2 = AtomicStructHandler()
+        outFileName = protAtomStrucExtractChain.outputPdb.getFileName()
+        aSH2.read(outFileName)
+        atomsNumT = len([atom.id for atom in aSH2.getStructure().get_atoms()])
+        self.assertEqual(7304, atomsNumT)
+
+    def testRenameChain(self):
+        pdb1 = self._importStructurePDB('5NI1') # A, B, C
+        _dictOperations = ProtAtomStrucOperate.operationsDictInv
+        args = {'pdbFileToBeRefined': pdb1,
+                'Operation': _dictOperations['reNameChain'],
+                'inputStructureChain': '{"model": 0, "chain": "B", "residues": 146}',
+                'chainName': 'AA'
+                }
+
+        protAtomStrucExtractChain = self.newProtocol(ProtAtomStrucOperate, **args)
+        self.launchProtocol(protAtomStrucExtractChain)
+        aSH2 = AtomicStructHandler()
+        outFileName = protAtomStrucExtractChain.outputPdb.getFileName()
+        aSH2.read(outFileName)
+        atomsNumT = len([atom.id for atom in aSH2.getStructure().get_atoms()])
+        # check size
+        self.assertEqual(4579, atomsNumT)
+        # check chain names
+        d1, d2 = aSH2.getModelsChains()
+        chains = d1[0].keys()
+        self.assertTrue('A' in chains)
+        self.assertTrue('AA' in chains)
+        self.assertTrue('C' in chains)
+        self.assertTrue('D' in chains)
+        self.assertFalse('B' in chains)
+
+    def testExtractAllChains(self):
+        pdb1 = self._importStructurePDB('6vsb')  # A, B, C
+        _dictOperations = ProtAtomStrucOperate.operationsDictInv
+        args = {'pdbFileToBeRefined': pdb1,
+                'Operation': _dictOperations['extractAllChains']
+                }
+
+        protAtomStrucExtractChain = self.newProtocol(ProtAtomStrucOperate, **args)
+        self.launchProtocol(protAtomStrucExtractChain)
+        aSH2 = AtomicStructHandler()
+        outFileName = protAtomStrucExtractChain.outputPdb_chainC.getFileName()
+        aSH2.read(outFileName)
+        atomsNumT = len([atom.id for atom in aSH2.getStructure().get_atoms()])
+        self.assertEqual(7327, atomsNumT)
