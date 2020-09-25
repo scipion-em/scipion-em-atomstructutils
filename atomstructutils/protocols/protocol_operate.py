@@ -143,7 +143,7 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         outFileName = self._getExtraPath("atomStruct_reNumberedChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
         chainIdDict = json.loads(self.inputStructureChain.get())
-        aStruct1.reNumberChain(chainID=chainIdDict['chain'],
+        aStruct1.renumberChain(chainID=chainIdDict['chain'],
                               offset=self.offset.get(),
                               modelID=chainIdDict['model'],
                               filename=outFileName)
@@ -155,7 +155,7 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         outFileName = self._getExtraPath("atomStruct_reNamedChain.cif")
         aStruct1 = AtomicStructHandler(structFileName)
         chainIdDict = json.loads(self.inputStructureChain.get())
-        aStruct1.reNameChain(chainID=chainIdDict['chain'],
+        aStruct1.renameChain(chainID=chainIdDict['chain'],
                               newChainName=self.chainName.get(),
                               modelID=chainIdDict['model'],
                               filename=outFileName)
