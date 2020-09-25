@@ -1,1 +1,2 @@
-from .viewer_protocol_convertsymmetry import ProtAtomStrucConvertSymmetryViewer
+from .viewer import ProtAtomStrucConvertSymmetryViewer
+from .viewer import ProtAtomStrucOperateViewer
