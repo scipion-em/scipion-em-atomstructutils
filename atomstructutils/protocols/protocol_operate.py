@@ -129,7 +129,7 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         outFileName = os.path.abspath(outFileName)
         pdb = AtomStruct()
         pdb.setFileName(outFileName)
-        # MM: to get appropriate cif files to be visualize with Chimera
+        # MM: to get appropriate cif files to be visualized with Chimera
         # Transform the output cif file in mmcif
         log = self._log
         fromCIFTommCIF(outFileName, outFileName, log)
