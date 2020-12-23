@@ -28,12 +28,27 @@
 import os
 
 from pwem.emlib.image import ImageHandler
+
+from atomstructutils.protocols import ProtAtomStrucOperate
 from atomstructutils.protocols.protocol_convertsymmetry import \
     ProtAtomStrucConvertSymmetry
 from pwem.viewers import Chimera
 from pyworkflow.viewer import DESKTOP_TKINTER, Viewer
 from pwem import Domain
 
+
+class ProtAtomStrucOperateViewer(Viewer):
+    """ Visualize the output of protocol protocol_convertsymmetry """
+    _environments = [DESKTOP_TKINTER]
+    _label = 'atomStruct Operate viewer'
+    _targets = [ProtAtomStrucOperate]
+
+    def _visualize(self, obj, **args):
+        # run in the background
+        fnCmd = self.protocol._getExtraPath("chimera_output.cxc")
+        chimeraPlugin = Domain.importFromPlugin('chimera', 'Plugin', doRaise=True)
+        chimeraPlugin.runChimeraProgram(chimeraPlugin.getProgram(), fnCmd + "&")
+        return []
 
 class ProtAtomStrucConvertSymmetryViewer(Viewer):
     """ Visualize the output of protocol protocol_convertsymmetry """
@@ -55,12 +70,13 @@ class ProtAtomStrucConvertSymmetryViewer(Viewer):
         Chimera.createCoordinateAxisFile(dim,
                                  bildFileName=bildFileName,
                                  sampling=sampling)
-        fnCmd = self.protocol._getTmpPath("chimera_output.cmd")
+        fnCmd = self.protocol._getTmpPath("chimera_output.cxc")
         f = open(fnCmd, 'w')
         f.write("open %s\n" % bildFileName)
         f.write("cofr 0,0,0\n")  # set center of coordinates
         f.write("open %s\n"
                 % os.path.abspath(inputAtomStruct.getFileName()))
+        f.write("style stick\n")
         if self.protocol.hasAttribute('rotatedAtomStruct'):
             outputAtomStruct = self.protocol.rotatedAtomStruct.getFileName()
             f.write("open %s\n" % os.path.abspath(outputAtomStruct))

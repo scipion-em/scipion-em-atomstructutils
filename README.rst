@@ -14,7 +14,10 @@ Current plugin protocols:
 Install this plugin
 ===================
 
-You will need to use `2.0.0 <https://github.com/I2PC/scipion/releases/tag/v2.0>`_ version of Scipion to run these protocols. To install the plugin, you have two options:
+**READ** The "Binary file" section before installing this package
+
+
+You will need to use `3.0.0 <https://scipion-em.github.io/docs/release-3.0.0/docs/scipion-modes/how-to-install.html>`_ version of Scipion to run these protocols.
 
 - **Stable version**  
 
@@ -36,13 +39,23 @@ OR
 
 2. Install:
 
+
 .. code-block::
 
             scipion installp -p path_to_scipion-em-atom_struct_utils --devel
 
 - **Binary files** 
 
-Atom_struct_utils plugin is a pure Python module, no binary files are required. 
+Atom_struct_utils plugin is a pure Python module but uses the program "maxit"
+for conversion of pdb/cif files with atomic coordinates. If not available maxit will be
+instaled. Prerequisites for maxit are  **bison**, **flex**, **csh** and **tcsh**
+
+.. code-block::
+
+      sudo apt install bison  (command valid for ubuntu/debian and similar OS)
+      sudo apt install felx   (command valid for ubuntu/debian and similar OS) 
+      sudo apt install csh   (command valid for ubuntu/debian and similar OS) 
+
 
 - **Tests**
 
