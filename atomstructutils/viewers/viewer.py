@@ -81,6 +81,7 @@ class ProtAtomStrucConvertSymmetryViewer(Viewer):
             outputAtomStruct = self.protocol.rotatedAtomStruct.getFileName()
             f.write("open %s\n" % os.path.abspath(outputAtomStruct))
 
+        f.write("view\n")
         f.close()
 
         # run in the background
