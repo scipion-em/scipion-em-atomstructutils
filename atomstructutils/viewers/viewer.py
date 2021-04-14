@@ -29,7 +29,7 @@ import os
 
 from pwem.emlib.image import ImageHandler
 
-from atomstructutils.protocols import ProtAtomStrucOperate
+from atomstructutils.protocols import ProtAtomStrucOperate, ProtAverageSubunits
 from atomstructutils.protocols.protocol_convertsymmetry import \
     ProtAtomStrucConvertSymmetry
 from pwem.viewers import Chimera
@@ -41,7 +41,7 @@ class ProtAtomStrucOperateViewer(Viewer):
     """ Visualize the output of protocol protocol_convertsymmetry """
     _environments = [DESKTOP_TKINTER]
     _label = 'atomStruct Operate viewer'
-    _targets = [ProtAtomStrucOperate]
+    _targets = [ProtAtomStrucOperate, ProtAverageSubunits]
 
     def _visualize(self, obj, **args):
         # run in the background
