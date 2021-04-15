@@ -210,6 +210,7 @@ Current plugin utilities: (A) extract a chain from an atom structure (pdb/cif fi
         fnCmd = self._getExtraPath("chimera_output.cxc")
         f = open(fnCmd, 'a+')
         f.write("open %s\n" % outFileName)
+        f.write("view\n")
         f.close()
 
         pdb = AtomStruct()

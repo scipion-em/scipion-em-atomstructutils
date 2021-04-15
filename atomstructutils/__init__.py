@@ -34,7 +34,7 @@ import pwem
 from .bibtex import _bibtexStr
 from pwem.constants import MAXIT
 
-__version__ = "3.0.3"
+__version__ = "3.0.4"
 _references = ['Cock2009']
 _logo = 'tool.png'
 
