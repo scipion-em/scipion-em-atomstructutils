@@ -50,12 +50,12 @@ class ProtAtomStrucConvertSymmetryViewer(Viewer):
         dim = 150.
         sampling = 1.
 
-        bildFileName = os.path.abspath(self.protocol._getTmpPath(
+        bildFileName = os.path.abspath(self.protocol._getExtraPath(
             "axis_output.bild"))
         Chimera.createCoordinateAxisFile(dim,
                                  bildFileName=bildFileName,
                                  sampling=sampling)
-        fnCmd = self.protocol._getTmpPath("chimera_output.cxc")
+        fnCmd = self.protocol._getExtraPath("chimera_output.cxc")
         f = open(fnCmd, 'w')
         f.write("open %s\n" % bildFileName)
         f.write("cofr 0,0,0\n")  # set center of coordinates
