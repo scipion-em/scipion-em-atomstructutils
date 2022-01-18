@@ -1,12 +1,12 @@
 # **************************************************************************
 # *
-# * Authors:    Yunior C. Fonseca Reyna (cfonseca@cnb.csic.es)
+# * Authors:     Daniel Del Hoyo (ddelhoyo@cnb.csic.es)
 # *
 # * Unidad de  Bioinformatica of Centro Nacional de Biotecnologia , CSIC
 # *
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
-# * the Free Software Foundation; either version 2 of the License, or
+# * the Free Software Foundation; either version 3 of the License, or
 # * (at your option) any later version.
 # *
 # * This program is distributed in the hope that it will be useful,
@@ -24,7 +24,22 @@
 # *
 # **************************************************************************
 
-from .protocol_operate import ProtAtomStrucOperate
-from .protocol_convertsymmetry import ProtAtomStrucConvertSymmetry
-from .protocol_average_subunits import ProtAverageSubunits
-from atomstructutils.protocols.protocol_atomStructs_rmsd import ProtRMSDAtomStructs
+from pwem.viewers import ChimeraAttributeViewer
+from ..protocols import ProtRMSDAtomStructs
+
+class ChimeraRMSDViewer(ChimeraAttributeViewer):
+    """ Viewer for attribute RMSD score of an AtomStruct.
+      Includes visualization in chimera and in histograms"""
+    _targets = [ProtRMSDAtomStructs]
+    _label = 'Atomic structure attributes viewer'
+
+    def __init__(self, **kwargs):
+      super().__init__(**kwargs)
+
+    def _defineParams(self, form):
+      super()._defineParams(form)
+      # Overwrite defaults
+      from pwem.wizards.wizard import ColorScaleWizardBase
+      group = form.addGroup('Color settings')
+      ColorScaleWizardBase.defineColorScaleParams(group, defaultLowest=0, defaultHighest=2, defaultIntervals=21,
+                                                  defaultColorMap='RdBu')
