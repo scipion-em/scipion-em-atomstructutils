@@ -27,4 +27,4 @@
 from .protocol_operate import ProtAtomStrucOperate
 from .protocol_convertsymmetry import ProtAtomStrucConvertSymmetry
 from .protocol_average_subunits import ProtAverageSubunits
-from atomstructutils.protocols.protocol_atomStructs_rmsd import ProtRMSDAtomStructs
+from .protocol_atomStructs_rmsd import ProtRMSDAtomStructs

@@ -27,3 +27,4 @@
 from .test_protocol_operate import (TestOperate)
 from .test_protocol_convertsymmetry import TestConvertSymmetry
 from .test_protocol_average_subunits import TestAverageSubUnit
+from .test_protocol_atomStructs_rmsd import TestRMSD
