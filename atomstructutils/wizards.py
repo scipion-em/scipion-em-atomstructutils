@@ -23,18 +23,11 @@
 # *  e-mail address 'scipion@cnb.csic.es'
 # *
 # **************************************************************************
-from pwem.wizards import GetStructureChainsWizard
+from pwem.wizards import SelectChainWizard
 from atomstructutils.protocols.protocol_operate import \
     ProtAtomStrucOperate
 
-
-class GetStructureChainsWizardAtomStruct(GetStructureChainsWizard):
-    _targets = [(ProtAtomStrucOperate, ['inputStructureChain'])
-                ]
-    # def getModelsChainsStep(self, protocol):
-    #     import copy
-    #     self.InputAtomStruct1 = copy.copy(protocol.InputAtomStruct1)
-    #     setattr(protocol, 'pdbFileToBeRefined', self.InputAtomStruct1)
-    #     models = super(GetStructureChainsWizardAtomStruct,
-    #                  self).getModelsChainsStep(protocol)
-    #     return models
+SelectChainWizard().addTarget(protocol=ProtAtomStrucOperate,
+                              targets=['inputStructureChain'],
+                              inputs=['pdbFileToBeRefined'],
+                              outputs=['inputStructureChain'])
