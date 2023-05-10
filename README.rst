@@ -53,7 +53,7 @@ instaled. Prerequisites for maxit are  **bison**, **flex**, **csh** and **tcsh**
 .. code-block::
 
       sudo apt install bison  (command valid for ubuntu/debian and similar OS)
-      sudo apt install felx   (command valid for ubuntu/debian and similar OS) 
+      sudo apt install flex   (command valid for ubuntu/debian and similar OS) 
       sudo apt install tcsh   (command valid for ubuntu/debian and similar OS) 
 
 
