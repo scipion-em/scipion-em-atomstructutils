@@ -70,6 +70,12 @@ Examples
 See `Model Building Tutorial <https://github.com/I2PC/scipion/wiki/tutorials/tutorial_model_building_basic.pdf>`_
 
 
+Problem compiling maxit?
+========================
+
+Try:
+    * install bison, flex, csh, tcsh
+    * edit the file ./cifparse-obj-v7.0/Makefile (in scipion/software/em/maxit-version) and replace "mv" by "cp"
 
 ===============
 Buildbot status
