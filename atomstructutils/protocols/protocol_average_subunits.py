@@ -41,9 +41,170 @@ from pwem.objects import Volume
 from pwem.convert.atom_struct import AtomicStructHandler, fromCIFTommCIF
 
 class ProtAverageSubunits(EMProtocol):
-    """Average densities related with the given atomic structures.
+    """
+    Average densities related with the given atomic structures.
     For example hexons in a unit cell. Alpha carbon are used
-    to compute the transformation matrix"""
+    to compute the transformation matrix.
+
+    AI Generated:
+
+    Average Subunits (ProtAverageSubunits) - User Manual
+        Overview
+
+        The Average Subunits protocol is designed to improve the signal
+        quality of structurally related regions within a three-dimensional
+        cryo-EM map by averaging densities associated with multiple atomic
+        structures. The protocol is particularly useful when the same
+        biological subunit appears repeatedly within a larger assembly,
+        such as viral capsomers, symmetric oligomers, or repeated domains
+        distributed across a macromolecular complex.
+
+        In many biological systems, repeated structural elements are
+        expected to share nearly identical conformations but may suffer
+        from local noise or limited sampling in the experimental map.
+        By identifying equivalent regions through atomic structure
+        comparisons and averaging their corresponding densities, the
+        protocol enhances common structural information while reducing
+        random noise. This approach can substantially improve the
+        interpretability of local regions and facilitate downstream
+        visualization, segmentation, and modeling tasks.
+
+        Biological Context and Applications
+
+        Repeated subunits are common in structural biology. Viral capsids,
+        membrane assemblies, filamentous systems, and symmetric protein
+        complexes often contain copies of the same molecular component
+        arranged in different orientations. Although these subunits may
+        be structurally equivalent, local reconstruction quality can vary
+        due to preferred orientation, flexibility, radiation damage, or
+        uneven particle distribution.
+
+        This protocol allows the user to combine information from these
+        repeated regions into a consensus density representation. In
+        practical cryo-EM workflows, this is especially valuable when
+        studying capsid proteins, symmetric oligomers, repeated lattice
+        units, or assemblies containing multiple copies of homologous
+        domains. The resulting averaged density frequently exhibits
+        improved continuity and reduced noise, making biological
+        interpretation easier and more reliable.
+
+        Inputs and Structural Relationships
+
+        The protocol requires a three-dimensional input volume together
+        with a reference atomic structure and one or more additional
+        atomic structures representing equivalent subunits. The reference
+        structure defines the coordinate framework used for the averaging
+        process. The additional structures are compared against this
+        reference to determine how equivalent regions are spatially
+        related.
+
+        Accurate structural correspondence between the reference and the
+        additional structures is essential. The protocol assumes that the
+        structures represent biologically equivalent components with
+        sufficiently similar residue organization. Significant structural
+        differences, missing residues, or inconsistent chain organization
+        may reduce the quality of the averaging process or introduce
+        biologically misleading results.
+
+        Residue Range Selection
+
+        Users may restrict the averaging process to a selected residue
+        interval. This capability is biologically important because many
+        macromolecular assemblies contain flexible termini, unresolved
+        loops, or partially disordered regions that should not influence
+        structural matching.
+
+        Focusing the comparison on a stable and conserved region usually
+        produces more reliable transformations between subunits. In many
+        practical cases, selecting only the well-resolved core domain of
+        a protein improves the quality of the averaged density and reduces
+        artifacts caused by conformational variability.
+
+        Bounding Region and Spatial Restriction
+
+        The protocol automatically defines a spatial region around the
+        reference atomic structure and performs averaging only within
+        that biologically relevant neighborhood. This localized strategy
+        prevents unrelated regions of the map from contributing to the
+        final average and reduces the risk of introducing unwanted signal.
+
+        An expansion parameter allows the user to enlarge the selected
+        region beyond the exact atomic coordinates. This is useful when
+        surrounding densities, flexible side chains, solvent interfaces,
+        or nearby interacting regions should also be included in the
+        averaging process. In practice, moderate expansion values often
+        provide a good balance between capturing complete structural
+        information and avoiding contamination from neighboring densities.
+
+        Structural Alignment and Coordinate Interpretation
+
+        The protocol determines the spatial relationship between
+        equivalent subunits by comparing atomic structures and deriving
+        rigid transformations between them. These transformations are
+        subsequently applied within the volumetric coordinate system so
+        that equivalent density regions can be superimposed and averaged.
+
+        From a biological perspective, accurate structural alignment is
+        critical because even small rotational or translational errors
+        may blur high-resolution features during averaging. The protocol
+        is therefore best suited for assemblies where equivalent subunits
+        maintain similar conformations and rigid-body relationships.
+
+        Interpolation and Density Averaging
+
+        Because transformed regions do not necessarily align exactly with
+        voxel positions, the protocol performs interpolated sampling of
+        density values. This allows smooth reconstruction of transformed
+        regions and avoids severe discretization artifacts during the
+        averaging process.
+
+        The final output corresponds to a consensus density generated
+        from all equivalent regions together with the original reference
+        region. Biologically conserved features become reinforced, while
+        stochastic noise is reduced. However, if meaningful conformational
+        heterogeneity exists among the subunits, averaging may obscure
+        biologically important differences.
+
+        Outputs and Visualization
+
+        The protocol produces an averaged three-dimensional volume that
+        preserves the original sampling and coordinate system. Visualization
+        files are also generated to facilitate inspection of the input map,
+        averaged result, atomic structures, and the spatial region used
+        during averaging.
+
+        These visualization aids are particularly useful for validating
+        whether the selected subunits overlap correctly and whether the
+        averaging region adequately captures the biologically relevant
+        portion of the assembly.
+
+        Practical Recommendations
+
+        For best results, users should select atomic structures that
+        represent highly similar conformations and contain consistent
+        residue organization. Flexible or partially unresolved regions
+        should generally be excluded from the structural comparison step.
+        When possible, selecting stable core domains yields more reliable
+        averaging.
+
+        The protocol is especially effective for highly symmetric systems
+        and repeated assemblies where equivalent subunits are expected to
+        share the same structural state. In contrast, assemblies with
+        substantial conformational variability may require caution because
+        averaging can mask biologically meaningful heterogeneity.
+
+        Final Perspective
+
+        Averaging repeated subunits is a powerful strategy for enhancing
+        local cryo-EM map quality and extracting clearer structural
+        information from symmetric or repetitive assemblies. By combining
+        information from equivalent regions identified through atomic
+        structures, the protocol enables more robust interpretation of
+        biologically conserved features while reducing experimental noise.
+        Careful selection of reference regions, structurally compatible
+        subunits, and biologically meaningful residue ranges is essential
+        for obtaining reliable and interpretable results.
+    """
     _label = 'average_sub_unit'
     _program = ""
     DEBUG = True
