@@ -76,6 +76,8 @@ Problem compiling maxit?
 Try:
     * install bison, flex, csh, tcsh
     * edit the file $SCIPION_HOME/software/em/maxit.$version/cifparse-obj-v7.0/Makefile (in scipion/software/em/maxit-version) and replace "mv" by "cp"
+    * define RCSBROOT in scipion.config as RCSBROOT=/path_to_scipion3/software/em/maxit-10.1
+
 
 ===============
 Buildbot status
